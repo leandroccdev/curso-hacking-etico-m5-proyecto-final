@@ -1,0 +1,1809 @@
+[
+    {
+        "port": "7",
+        "service_name": "Echo",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio Echo",
+        "severity": "baja",
+        "impact": "Puede ser usado para ataques de amplificación de tráfico (DoS) y enumeración de hosts",
+        "tech_recommendation": "Deshabilitar el servicio si no es necesario; restringir acceso mediante firewall."
+    },
+    {
+        "port": "19",
+        "service_name": "CHARGEN",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo Generador de Caracteres, tiene vulnerabilidades graves y por lo tanto rara vez se usa hoy en día",
+        "severity": "baja",
+        "impact": "Explotable para ataques de amplificación y denegación de servicio (DoS)",
+        "tech_recommendation": "Deshabilitar el servicio; bloquear en firewall."
+    },
+    {
+        "port": "20",
+        "service_name": "FTP-data",
+        "transport_protocol": "TCP, SCTP",
+        "description": "Transferencia de datos del Protocolo de Transferencia de Archivos (FTP)",
+        "severity": "alta",
+        "impact": "Exposición de archivos y riesgo de robo de información si la transferencia no está cifrada",
+        "tech_recommendation": "Usar SFTP o FTPS; restringir acceso; configurar firewall para limitar conexiones."
+    },
+    {
+        "port": "21",
+        "service_name": "FTP",
+        "transport_protocol": "TCP, UDP, SCTP",
+        "description": "Control de comandos del Protocolo de Transferencia de Archivos (FTP)",
+        "severity": "alta",
+        "impact": "Posible compromiso de credenciales y transferencia de datos en texto plano",
+        "tech_recommendation": "Migrar a SFTP/FTPS; deshabilitar FTP sin cifrado; implementar firewall y autenticación fuerte."
+    },
+    {
+        "port": "22",
+        "service_name": "SSH/SCP/SFTP",
+        "transport_protocol": "TCP, UDP, SCTP",
+        "description": "Shell Seguro (SSH), inicios de sesión seguros, transferencias de archivos (scp, sftp) y reenvío de puertos",
+        "severity": "alta",
+        "impact": "Acceso administrativo remoto; compromiso del servidor si existen credenciales débiles o exploits",
+        "tech_recommendation": "Mantener actualizado; usar claves en lugar de contraseñas; restringir acceso por IP mediante firewall."
+    },
+    {
+        "port": "23",
+        "service_name": "Telnet",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Telnet, para comunicaciones de texto sin cifrado",
+        "severity": "alta",
+        "impact": "Exposición de credenciales en texto plano y posible control remoto no autorizado",
+        "tech_recommendation": "Deshabilitar Telnet; usar solo SSH; bloquear en firewall accesos externos."
+    },
+    {
+        "port": "25",
+        "service_name": "SMTP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Simple de Transferencia de Correo (SMTP), usado para el enrutamiento de correos entre servidores de correo",
+        "severity": "alta",
+        "impact": "Puede ser usado para spam, phishing o relay abierto; exposición de correos internos",
+        "tech_recommendation": "Configurar autenticación (SPF, DKIM, DMARC); limitar relaying; monitorear registros y accesos."
+    },
+    {
+        "port": "42",
+        "service_name": "WINS Replication",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio de Nombres de Internet de Microsoft Windows (WINS), vulnerable a ataques en una red local",
+        "severity": "media",
+        "impact": "Puede ser explotado para manipulación o interceptación de nombres NetBIOS; riesgo de envenenamiento de resoluciones en entornos Windows",
+        "tech_recommendation": "Deshabilitar WINS si no se usa; reemplazar con DNS moderno; restringir acceso a redes internas únicamente."
+    },
+    {
+        "port": "43",
+        "service_name": "WHOIS",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio Whois, proporciona información a nivel de dominio",
+        "severity": "media",
+        "impact": "Exposición de información de dominios, usuarios o infraestructura; puede ser usado para reconocimiento",
+        "tech_recommendation": "Restringir acceso a clientes autorizados; evaluar si es necesario exponerlo; implementar controles de logging."
+    },
+    {
+        "port": "49",
+        "service_name": "TACACS",
+        "transport_protocol": "UDP; can also use TCP but not necessarily on port 49",
+        "description": "Sistema TACACS (Terminal Access Controller Access-Control System), proporciona autenticación remota y servicios relacionados para el acceso a la red",
+        "severity": "media",
+        "impact": "Si no se usa cifrado, credenciales pueden ser interceptadas; riesgo de acceso no autorizado a sistemas de red",
+        "tech_recommendation": "Migrar a TACACS+ o RADIUS con cifrado; limitar acceso al puerto mediante firewall; usar autenticación fuerte."
+    },
+    {
+        "port": "53",
+        "service_name": "DNS",
+        "transport_protocol": "TCP, UDP",
+        "description": "Resolución de nombres del Sistema de Nombres de Dominio (DNS)",
+        "severity": "alta",
+        "impact": "Puede ser explotado para ataques de amplificación DDoS, cache poisoning o exfiltración de datos por DNS tunneling",
+        "tech_recommendation": "Restringir recursividad; implementar DNSSEC; habilitar rate limiting; monitorear queries sospechosas."
+    },
+    {
+        "port": "67",
+        "service_name": "DHCP/BOOTP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Configuración Dinámica de Host (DHCP) y su predecesor Bootstrap Protocol; puerto del servidor",
+        "severity": "media",
+        "impact": "Riesgo de servidores DHCP falsos, asignación de direcciones maliciosas o ataques de denegación de servicio",
+        "tech_recommendation": "Restringir DHCP a redes internas confiables; aplicar filtrado por switch (DHCP snooping); monitorear asignaciones."
+    },
+    {
+        "port": "68",
+        "service_name": "DHCP/BOOTP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Configuración Dinámica de Host (DHCP) y su predecesor Bootstrap Protocol; puerto del cliente",
+        "severity": "media",
+        "impact": "Puede recibir configuraciones maliciosas si existen servidores DHCP comprometidos o falsos",
+        "tech_recommendation": "Asegurar la red contra servidores DHCP no autorizados; aplicar DHCP snooping en switches."
+    },
+    {
+        "port": "69",
+        "service_name": "TFTP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Transferencia de Archivos Trivial (TFTP)",
+        "severity": "media",
+        "impact": "Transfiere archivos sin autenticación ni cifrado; puede filtrar configuraciones sensibles (ej. routers, switches)",
+        "tech_recommendation": "Deshabilitar TFTP si no es esencial; restringir acceso a red interna; usar protocolos seguros como SFTP."
+    },
+    {
+        "port": "70",
+        "service_name": "Gopher",
+        "transport_protocol": "TCP",
+        "description": "Gopher es un protocolo de comunicación para distribuir, buscar y recuperar documentos en redes de Protocolo de Internet (IP)",
+        "severity": "baja",
+        "impact": "Exposición de un servicio obsoleto; podría revelar información no prevista de la infraestructura",
+        "tech_recommendation": "Deshabilitar Gopher; usar protocolos modernos (HTTP/HTTPS)."
+    },
+    {
+        "port": "79",
+        "service_name": "Finger",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Name/Finger y protocolo de información de usuario Finger, para recuperar y manipular información de usuarios",
+        "severity": "media",
+        "impact": "Permite enumeración de usuarios del sistema; puede dar información a atacantes para ataques de fuerza bruta",
+        "tech_recommendation": "Deshabilitar el servicio Finger; restringir acceso; aplicar controles de auditoría."
+    },
+    {
+        "port": "80",
+        "service_name": "HTTP",
+        "transport_protocol": "TCP, UDP, SCTP",
+        "description": "Protocolo de Transferencia de Hipertexto (HTTP) usa TCP en las versiones 1.x y 2. HTTP/3 usa QUIC, un protocolo de transporte sobre UDP",
+        "severity": "alta",
+        "impact": "Exposición de aplicaciones web que pueden contener vulnerabilidades (XSS, SQLi, RCE, etc.); transmisión de datos sin cifrado",
+        "tech_recommendation": "Migrar a HTTPS con TLS; aplicar hardening en el servidor web; implementar WAF y prácticas de desarrollo seguro."
+    },
+    {
+        "port": "88",
+        "service_name": "Kerberos",
+        "transport_protocol": "TCP, UDP",
+        "description": "Sistema de autenticación de red",
+        "severity": "baja",
+        "impact": "Si está mal configurado, puede permitir ataques de ticket-granting o pass-the-ticket; enumeración de cuentas de dominio",
+        "tech_recommendation": "Asegurar sincronización de tiempo; aplicar políticas de contraseñas fuertes; restringir acceso externo mediante firewall."
+    },
+    {
+        "port": "102",
+        "service_name": "Microsoft Exchange ISO-TSAP",
+        "transport_protocol": "TCP",
+        "description": "Servicio Microsoft Exchange ISO Transport Service Access Point (TSAP) protocolo de Clase 0",
+        "severity": "media",
+        "impact": "Puede ser utilizado como vector de ataque contra servidores Microsoft Exchange; riesgo de fuga de información",
+        "tech_recommendation": "Restringir acceso externo; aplicar actualizaciones de seguridad de Microsoft Exchange; monitorear conexiones."
+    },
+    {
+        "port": "110",
+        "service_name": "POP3",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Oficina de Correo, versión 3 (POP3)",
+        "severity": "alta",
+        "impact": "Transmisión de credenciales en texto plano; riesgo de robo de correos electrónicos",
+        "tech_recommendation": "Usar POP3S (TLS); deshabilitar POP3 no cifrado; aplicar políticas de autenticación seguras."
+    },
+    {
+        "port": "113",
+        "service_name": "Ident",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Identificación, para identificar al usuario de una conexión TCP en particular",
+        "severity": "media",
+        "impact": "Puede filtrar información de usuarios y servicios a atacantes; usado para fingerprinting de sistemas",
+        "tech_recommendation": "Deshabilitar Ident si no es necesario; restringir acceso; monitorear intentos de conexión."
+    },
+    {
+        "port": "119",
+        "service_name": "NNTP (Usenet)",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Transferencia de Noticias en Red (NNTP)",
+        "severity": "alta",
+        "impact": "Exposición a ataques en un protocolo obsoleto; riesgo de abuso para distribución de spam o malware",
+        "tech_recommendation": "Deshabilitar NNTP si no es requerido; restringir acceso a clientes autorizados; usar protocolos modernos."
+    },
+    {
+        "port": "123",
+        "service_name": "NTP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Tiempo de Red (NTP)",
+        "severity": "media",
+        "impact": "Puede ser explotado para ataques de amplificación DDoS; riesgo de manipulación de sincronización de tiempo",
+        "tech_recommendation": "Restringir acceso a clientes internos; usar servidores NTP confiables; habilitar rate limiting."
+    },
+    {
+        "port": "135",
+        "service_name": "Microsoft RPC EPMAP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio Microsoft de Mapeo de Puntos de Extremo de Llamadas a Procedimiento Remoto (RPC EPMAP), para acceso y gestión remota de sistemas",
+        "severity": "alta",
+        "impact": "Superficie de ataque frecuente en sistemas Windows; puede ser explotado para ejecución remota de código y propagación de malware",
+        "tech_recommendation": "Restringir acceso externo; aplicar parches de seguridad; usar segmentación de red y monitoreo de tráfico RPC."
+    },
+    {
+        "port": "137",
+        "service_name": "NetBIOS-ns",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio de Nombres NetBIOS, usado para registro y resolución de nombres",
+        "severity": "media",
+        "impact": "Puede permitir enumeración de hosts y nombres de red; usado en reconocimiento y propagación de malware",
+        "tech_recommendation": "Bloquear NetBIOS en redes externas; usar DNS en lugar de NetBIOS; restringir a LAN interna."
+    },
+    {
+        "port": "138",
+        "service_name": "NetBIOS-dgm",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio de Datagramas NetBIOS, usado para proporcionar acceso a recursos compartidos",
+        "severity": "media",
+        "impact": "Exposición de recursos compartidos a Internet; posible fuga de información de red y ataque de propagación",
+        "tech_recommendation": "Deshabilitar NetBIOS; restringir mediante firewall; migrar a protocolos modernos como SMB sobre TCP/IP con seguridad."
+    },
+    {
+        "port": "139",
+        "service_name": "NetBIOS-ssn",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio de Sesión NetBIOS",
+        "severity": "alta",
+        "impact": "Exposición de recursos compartidos de Windows (SMBv1); vulnerable a exploits como EternalBlue y propagación de ransomware",
+        "tech_recommendation": "Deshabilitar NetBIOS/SMBv1; restringir acceso solo a redes internas; aplicar parches de seguridad."
+    },
+    {
+        "port": "143",
+        "service_name": "IMAP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Acceso a Mensajes de Internet (IMAP), gestión de mensajes de correo electrónico en un servidor",
+        "severity": "media",
+        "impact": "Si no se cifra, credenciales y correos pueden ser interceptados; riesgo de fuga de datos",
+        "tech_recommendation": "Usar IMAPS (TLS); deshabilitar IMAP no cifrado; aplicar autenticación multifactor."
+    },
+    {
+        "port": "161",
+        "service_name": "SNMP-agents (unencrypted)",
+        "transport_protocol": "UDP",
+        "description": "Protocolo Simple de Administración de Red (SNMP); los agentes se comunican en este puerto",
+        "severity": "media",
+        "impact": "Puede filtrar información sensible de red (community strings, configuraciones); explotable para ataques de administración remota no autorizada",
+        "tech_recommendation": "Deshabilitar SNMP v1/v2c; usar SNMPv3 con cifrado y autenticación; restringir acceso por firewall."
+    },
+    {
+        "port": "162",
+        "service_name": "SNMP-trap (unencrypted)",
+        "transport_protocol": "UDP",
+        "description": "Protocolo Simple de Administración de Red (SNMP); escucha notificaciones asíncronas (traps)",
+        "severity": "media",
+        "impact": "Exposición de información de red mediante traps sin cifrado; posible manipulación o spoofing de alertas",
+        "tech_recommendation": "Usar SNMPv3 con cifrado; restringir acceso a sistemas de monitoreo autorizados; filtrar en firewall."
+    },
+    {
+        "port": "177",
+        "service_name": "XDMCP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Control del Gestor de Pantalla X (XDMCP)",
+        "severity": "media",
+        "impact": "Permite conexiones gráficas remotas sin cifrado; riesgo de robo de credenciales y sesión",
+        "tech_recommendation": "Deshabilitar XDMCP; usar SSH con reenvío X11 seguro; restringir acceso por firewall."
+    },
+    {
+        "port": "179",
+        "service_name": "BGP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Puerta de Enlace Fronteriza (BGP)",
+        "severity": "media",
+        "impact": "Manipulación de rutas (BGP hijacking); riesgo crítico de desvío de tráfico o interrupción de red",
+        "tech_recommendation": "Restringir sesiones BGP a peers autorizados; usar autenticación MD5/TCP-AO; aplicar filtrado de prefijos."
+    },
+    {
+        "port": "194",
+        "service_name": "IRC",
+        "transport_protocol": "UDP",
+        "description": "Chat Relé de Internet (IRC)",
+        "severity": "media",
+        "impact": "Frecuentemente usado para comunicación de botnets; riesgo de exfiltración de datos y control remoto malicioso",
+        "tech_recommendation": "Restringir acceso externo; monitorear tráfico IRC; deshabilitar si no es necesario."
+    },
+    {
+        "port": "201",
+        "service_name": "AppleTalk",
+        "transport_protocol": "TCP, UDP",
+        "description": "Mantenimiento de Enrutamiento AppleTalk. Troyanos y virus han usado el puerto UDP 201",
+        "severity": "baja",
+        "impact": "Protocolo obsoleto con vulnerabilidades conocidas; puede ser abusado por malware",
+        "tech_recommendation": "Deshabilitar AppleTalk; usar protocolos modernos de enrutamiento; restringir acceso."
+    },
+    {
+        "port": "264",
+        "service_name": "BGMP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Multidifusión de Puerta de Enlace Fronteriza (BGMP)",
+        "severity": "baja",
+        "impact": "Protocolo poco usado; exposición puede implicar vectores de ataque en multicast",
+        "tech_recommendation": "Deshabilitar BGMP si no es necesario; restringir acceso a peers autorizados."
+    },
+    {
+        "port": "318",
+        "service_name": "TSP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Marca de Tiempo (TSP)",
+        "severity": "baja",
+        "impact": "Exposición de información de tiempo del sistema que puede ayudar en ataques de sincronización o análisis de red.",
+        "tech_recommendation": "Restringir acceso externo; usar solo en redes internas donde sea requerido."
+    },
+    {
+        "port": "381",
+        "service_name": "HP Openview",
+        "transport_protocol": "TCP, UDP",
+        "description": "Recolector de datos de rendimiento de HP",
+        "severity": "baja",
+        "impact": "Podría filtrar métricas de rendimiento y facilitar reconocimiento de infraestructura.",
+        "tech_recommendation": "Deshabilitar si no se utiliza; aplicar segmentación de red y controles de acceso."
+    },
+    {
+        "port": "383",
+        "service_name": "HP Openview",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gestor de alarmas de datos de HP",
+        "severity": "media",
+        "impact": "Exposición de servicios de monitoreo que pueden ser abusados para denegación de servicio o manipulación de alarmas.",
+        "tech_recommendation": "Limitar acceso solo a hosts autorizados; proteger con autenticación y cifrado."
+    },
+    {
+        "port": "389",
+        "service_name": "LDAP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo Ligero de Acceso a Directorios (LDAP)",
+        "severity": "media",
+        "impact": "Acceso no autorizado podría exponer credenciales, usuarios y estructura de directorio.",
+        "tech_recommendation": "Habilitar LDAP sobre TLS (LDAPS); restringir acceso a redes internas."
+    },
+    {
+        "port": "411",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Hub de Direct Connect, Protocolo MT Remoto",
+        "severity": "baja",
+        "impact": "Podría ser explotado para intercambio no autorizado de archivos o tunneling.",
+        "tech_recommendation": "Bloquear en firewall; permitir solo si el servicio es requerido."
+    },
+    {
+        "port": "412",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Direct Connect Cliente a Cliente, Puerto de Convención de Trampas",
+        "severity": "baja",
+        "impact": "Riesgo de uso para intercambio de datos no controlado o conexiones P2P.",
+        "tech_recommendation": "Restringir a redes internas seguras; bloquear si no se utiliza."
+    },
+    {
+        "port": "427",
+        "service_name": "SLP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Localización de Servicios (SLP)",
+        "severity": "media",
+        "impact": "Podría permitir a atacantes descubrir servicios internos para explotación posterior.",
+        "tech_recommendation": "Limitar visibilidad del servicio; aplicar autenticación y segmentación de red."
+    },
+    {
+        "port": "443",
+        "service_name": "HTTPS (HTTP over SSL)",
+        "transport_protocol": "TCP, UDP, SCTP",
+        "description": "Protocolo Seguro de Transferencia de Hipertexto (HTTPS) usa TCP en versiones 1.x y 2. HTTP/3 usa QUIC, un protocolo de transporte sobre UDP",
+        "severity": "alta",
+        "impact": "Ataques SSL/TLS débiles o mal configurados pueden exponer datos sensibles.",
+        "tech_recommendation": "Usar TLS 1.2/1.3; deshabilitar protocolos inseguros; aplicar certificados válidos y monitoreo continuo."
+    },
+    {
+        "port": "445",
+        "service_name": "Microsoft DS SMB",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicios de Directorio de Microsoft: TCP para Active Directory, comparticiones de Windows; UDP para el protocolo de compartición de archivos SMB (Server Message Block)",
+        "severity": "alta",
+        "impact": "Muy explotado históricamente (ej. WannaCry, EternalBlue); permite ejecución remota y acceso a archivos.",
+        "tech_recommendation": "Restringir acceso externo; aplicar parches críticos; segmentar red y usar SMB v3 con cifrado."
+    },
+    {
+        "port": "464",
+        "service_name": "Kerberos",
+        "transport_protocol": "TCP, UDP",
+        "description": "Configuración de contraseñas en Kerberos",
+        "severity": "media",
+        "impact": "Mal uso puede comprometer autenticación centralizada y credenciales sensibles.",
+        "tech_recommendation": "Permitir solo dentro de dominio; asegurar sincronización horaria y uso de cifrado fuerte."
+    },
+    {
+        "port": "465",
+        "service_name": "SMTP over TLS/SSL, SSM",
+        "transport_protocol": "TCP",
+        "description": "SMTP autenticado sobre TLS/SSL (SMTPS), Directorio de Rendezvous de URL para el protocolo Source Specific Multicast (SSM) de Cisco",
+        "severity": "media",
+        "impact": "Mala configuración podría permitir envío no autorizado de correos (spam/relay).",
+        "tech_recommendation": "Habilitar autenticación fuerte (SMTP AUTH); aplicar TLS obligatorio; monitorear envíos."
+    },
+    {
+        "port": "497",
+        "service_name": "Dantz Retrospect",
+        "transport_protocol": "TCP, UDP",
+        "description": "Suite de software para realizar copias de seguridad de sistemas operativos",
+        "severity": "media",
+        "impact": "Podría permitir acceso no autorizado a copias de seguridad sensibles.",
+        "tech_recommendation": "Limitar acceso solo a servidores de respaldo autorizados; aplicar cifrado en tránsito y repositorios."
+    },
+    {
+        "port": "500",
+        "service_name": "IPSec / ISAKMP / IKE",
+        "transport_protocol": "UDP",
+        "description": "Seguridad de Protocolo de Internet (IPsec) / Protocolo de Asociación de Seguridad de Internet y Gestión de Claves (ISAKMP) / Intercambio de Claves de Internet (IKE)",
+        "severity": "media",
+        "impact": "Ataques de fuerza bruta o downgrade pueden comprometer túneles VPN.",
+        "tech_recommendation": "Usar IKEv2 con cifrados fuertes; bloquear accesos no autorizados y aplicar autenticación mutua."
+    },
+    {
+        "port": "512",
+        "service_name": "rexec",
+        "transport_protocol": "TCP",
+        "description": "Ejecución Remota de Procesos",
+        "severity": "media",
+        "tech_recommendation": "Permite ejecutar comandos de forma remota sin cifrado, lo que expone credenciales y procesos a interceptación o abuso.",
+        "impact": "Acceso no autorizado al sistema, ejecución arbitraria de comandos, escalada de privilegios."
+    },
+    {
+        "port": "513",
+        "service_name": "rlogin",
+        "transport_protocol": "TCP",
+        "description": "El programa Unix rlogin permite a los usuarios iniciar sesión en otro host a través de la red",
+        "severity": "media",
+        "tech_recommendation": "Transmite credenciales en texto plano, susceptible a sniffing y suplantación.",
+        "impact": "Compromiso de cuentas de usuario, acceso remoto completo al sistema."
+    },
+    {
+        "port": "514",
+        "service_name": "syslog",
+        "transport_protocol": "UDP",
+        "description": "Protocolo Syslog, para recopilar y organizar todos los archivos de registro enviados desde los distintos dispositivos en una red",
+        "severity": "media",
+        "tech_recommendation": "La transmisión no cifrada permite manipulación o inyección de logs, y la falta de autenticación facilita ataques DoS.",
+        "impact": "Pérdida de integridad de logs, encubrimiento de actividades maliciosas, interrupción de monitoreo."
+    },
+    {
+        "port": "515",
+        "service_name": "LPD/LPR",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Line Printer Daemon (LPD) o Protocolo Line Printer Remote (LPR)",
+        "severity": "media",
+        "tech_recommendation": "Servicio obsoleto, vulnerable a explotación y abuso de impresión remota sin control.",
+        "impact": "Fuga de información impresa, consumo de recursos, uso indebido de impresoras."
+    },
+    {
+        "port": "520",
+        "service_name": "RIP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Información de Enrutamiento (RIP), usado para encontrar la ruta óptima entre redes de origen y destino",
+        "severity": "media",
+        "tech_recommendation": "No implementa seguridad, puede ser manipulado para redirigir tráfico mediante falsificación de rutas.",
+        "impact": "Secuestro de sesiones, ataques Man-in-the-Middle, pérdida de disponibilidad de red."
+    },
+    {
+        "port": "521",
+        "service_name": "RIPng (IPv6)",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Información de Enrutamiento de Próxima Generación (RIPng), la versión de RIP compatible con IPv6",
+        "severity": "media",
+        "tech_recommendation": "Al igual que RIP clásico, no cuenta con mecanismos fuertes de autenticación.",
+        "impact": "Manipulación de rutas IPv6, desvío de tráfico y pérdida de conectividad."
+    },
+    {
+        "port": "540",
+        "service_name": "UUCP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Copia Unix a Unix (UUCP)",
+        "severity": "media",
+        "tech_recommendation": "Protocolo obsoleto, vulnerable a ataques de autenticación débil y ejecución de comandos.",
+        "impact": "Exfiltración de datos, ejecución remota de código, compromiso de servidores Unix."
+    },
+    {
+        "port": "546",
+        "service_name": "DHCPv6",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Configuración Dinámica de Host versión 6 (DHCPv6). Los clientes DHCPv6 escuchan mensajes en el puerto UDP 546",
+        "severity": "media",
+        "tech_recommendation": "Un atacante en red puede enviar respuestas falsas, provocando asignaciones de direcciones maliciosas.",
+        "impact": "Envenenamiento de red, pérdida de conectividad, redirección de tráfico a hosts controlados por atacante."
+    },
+    {
+        "port": "547",
+        "service_name": "DHCPv6",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servidores DHCPv6 y Agentes de Reenvío DHCPv6 escuchan mensajes en el puerto UDP 547",
+        "severity": "media",
+        "tech_recommendation": "Expuesto a ataques de suplantación de servidor DHCPv6 o inundación de solicitudes.",
+        "impact": "Denegación de servicio, asignación de configuraciones de red maliciosas."
+    },
+    {
+        "port": "548",
+        "service_name": "AFP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Archivos de Apple (AFP)",
+        "severity": "media",
+        "tech_recommendation": "Protocolo de compartición de archivos de Apple con autenticación débil en versiones antiguas.",
+        "impact": "Acceso no autorizado a archivos, exfiltración de datos, escalada en entornos macOS."
+    },
+    {
+        "port": "554",
+        "service_name": "RTSP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Transmisión en Tiempo Real (RTSP)",
+        "severity": "media",
+        "impact": "Exponer RTSP permite a atacantes acceder o interceptar transmisiones de video/audio, pudiendo filtrar información sensible o comprometer cámaras IP.",
+        "tech_recommendation": "Restringir acceso a RTSP mediante firewall o VPN, usar autenticación fuerte y cifrado, y deshabilitar el servicio si no es necesario."
+    },
+    {
+        "port": "560",
+        "service_name": "rmonitor",
+        "transport_protocol": "UDP",
+        "description": "Monitor Remoto",
+        "severity": "media",
+        "impact": "Un atacante podría usar rmonitor para obtener información de procesos remotos y monitorear sistemas, facilitando reconocimiento y ataques posteriores.",
+        "tech_recommendation": "Bloquear el puerto hacia Internet, usar herramientas de monitoreo seguras y modernas, y limitar el acceso únicamente a redes internas."
+    },
+    {
+        "port": "563",
+        "service_name": "NNTP over TLS/SSL",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Transferencia de Noticias en Red con cifrado y verificación (NNTP seguro)",
+        "severity": "media",
+        "impact": "Si está mal configurado, podría permitir abuso para distribución de spam o ataques de denegación de servicio aprovechando el protocolo NNTP.",
+        "tech_recommendation": "Revisar configuración de TLS/SSL, aplicar actualizaciones, restringir acceso solo a clientes autorizados y monitorear el tráfico."
+    },
+    {
+        "port": "587",
+        "service_name": "SMTP",
+        "transport_protocol": "TCP",
+        "description": "Para el envío de mensajes de correo electrónico vía SMTP",
+        "severity": "alta",
+        "impact": "Exposición de SMTP sin controles adecuados puede derivar en abuso como relay abierto, envío masivo de spam y suplantación de identidad.",
+        "tech_recommendation": "Habilitar autenticación obligatoria (SMTP AUTH), usar STARTTLS, restringir relay, aplicar SPF/DKIM/DMARC y monitorear uso."
+    },
+    {
+        "port": "591",
+        "service_name": "FileMaker",
+        "transport_protocol": "TCP",
+        "description": "FileMaker Web Companion, la tecnología de publicación web disponible en FileMaker versiones 4-6",
+        "severity": "media",
+        "impact": "Exposición de FileMaker Web Companion puede permitir acceso remoto no autorizado a bases de datos antiguas y vulnerables.",
+        "tech_recommendation": "Actualizar a versiones soportadas, restringir acceso externo, y migrar servicios web a plataformas modernas y seguras."
+    },
+    {
+        "port": "593",
+        "service_name": "Microsoft DCOM",
+        "transport_protocol": "TCP, UDP",
+        "description": "Modelo de Objetos de Componentes Distribuidos (DCOM)",
+        "severity": "media",
+        "impact": "Exposición de DCOM puede permitir ejecución remota de código y ser utilizado para moverse lateralmente dentro de una red.",
+        "tech_recommendation": "Restringir el puerto a redes internas, aplicar parches de seguridad de Microsoft y usar firewalls para segmentar accesos."
+    },
+    {
+        "port": "596",
+        "service_name": "SMSD",
+        "transport_protocol": "TCP, UDP",
+        "description": "Demonio SysMan Station",
+        "severity": "media",
+        "impact": "Un atacante puede aprovechar vulnerabilidades de SMSD para obtener control administrativo o manipular funciones críticas del sistema.",
+        "tech_recommendation": "Bloquear el servicio si no es necesario, restringir acceso, y considerar reemplazarlo por soluciones de administración más seguras."
+    },
+    {
+        "port": "631",
+        "service_name": "IPP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Impresión en Internet (IPP)",
+        "severity": "media",
+        "impact": "Exponer IPP puede permitir a atacantes enviar trabajos de impresión maliciosos, denegación de servicio o filtrado de documentos sensibles.",
+        "tech_recommendation": "Limitar IPP a red interna, habilitar cifrado, aplicar autenticación y deshabilitar impresión remota no requerida."
+    },
+    {
+        "port": "636",
+        "service_name": "LDAP over TLS/SSL",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo Ligero de Acceso a Directorios sobre TLS/SSL (LDAPS)",
+        "severity": "media",
+        "impact": "Exponer LDAP con credenciales débiles o configuración insegura puede permitir fuga de información sensible de usuarios o abuso de directorio.",
+        "tech_recommendation": "Restringir acceso externo, reforzar cifrado TLS, aplicar autenticación fuerte y segmentar el directorio a solo clientes autorizados."
+    },
+    {
+        "port": "639",
+        "service_name": "MSDP (PIM)",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Descubrimiento de Fuente Multicast (MSDP), que forma parte de la familia de Protocolo de Multidifusión Independiente (PIM)",
+        "severity": "media",
+        "impact": "MSDP expuesto puede ser explotado para alterar o interceptar tráfico multicast, afectando disponibilidad y privacidad en la red.",
+        "tech_recommendation": "Deshabilitar MSDP si no se usa, filtrar acceso por firewall, y aplicar segmentación de red en routers y switches."
+    },
+    {
+        "port": "646",
+        "service_name": "LDP (MPLS)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Distribución de Etiquetas (LDP), se aplica a enrutadores capaces de Conmutación de Etiquetas Multiprotocolo (MPLS)",
+        "severity": "media",
+        "impact": "Exposición de LDP puede comprometer la infraestructura MPLS, permitiendo ataques de redireccionamiento o denegación de servicio.",
+        "tech_recommendation": "Restringir acceso a solo routers confiables, filtrar en firewall, y reforzar autenticación en sesiones LDP."
+    },
+    {
+        "port": "691",
+        "service_name": "Microsoft Exchange",
+        "transport_protocol": "TCP",
+        "description": "Enrutamiento de Microsoft Exchange",
+        "severity": "media",
+        "impact": "Puede permitir a atacantes recolectar información del entorno de correo o aprovechar vulnerabilidades conocidas en Exchange para moverse lateralmente.",
+        "tech_recommendation": "Restringir acceso desde Internet, aplicar parches de seguridad de Microsoft Exchange, segmentar el servicio en red interna."
+    },
+    {
+        "port": "860",
+        "service_name": "iSCSI",
+        "transport_protocol": "TCP",
+        "description": "Interfaz de Sistemas de Pequeña Computadora en Internet (iSCSI)",
+        "severity": "media",
+        "impact": "La exposición de iSCSI puede comprometer sistemas de almacenamiento permitiendo acceso no autorizado a discos o volúmenes.",
+        "tech_recommendation": "Limitar acceso mediante firewall, habilitar autenticación CHAP, exponer solo en redes privadas."
+    },
+    {
+        "port": "873",
+        "service_name": "rsync",
+        "transport_protocol": "TCP",
+        "description": "El protocolo rsync de sincronización de archivos transfiere y sincroniza archivos de manera eficiente entre dispositivos y computadoras en red",
+        "severity": "media",
+        "impact": "Puede ser usado para listar o extraer archivos sin autenticación si está mal configurado, facilitando fuga de información.",
+        "tech_recommendation": "Restringir acceso solo a IPs confiables, requerir autenticación, encapsular tráfico en SSH."
+    },
+    {
+        "port": "902",
+        "service_name": "VMware Server",
+        "transport_protocol": "TCP, UDP",
+        "description": "VMware ESXi, un hipervisor",
+        "severity": "media",
+        "impact": "Acceso al puerto de gestión de VMware puede permitir ataques de denegación de servicio o ejecución de exploits en hipervisores.",
+        "tech_recommendation": "Restringir acceso de administración a redes internas, mantener hipervisores actualizados, usar VPN para gestión."
+    },
+    {
+        "port": "989",
+        "service_name": "FTPS",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Transferencia de Archivos (datos) sobre TLS/SSL",
+        "severity": "media",
+        "impact": "Aunque usa TLS, exposición indebida puede revelar credenciales o permitir ataques de fuerza bruta contra servicios de transferencia de archivos.",
+        "tech_recommendation": "Forzar uso de cifrados seguros, restringir acceso por firewall, implementar políticas de contraseñas robustas."
+    },
+    {
+        "port": "990",
+        "service_name": "FTPS",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Transferencia de Archivos (control) sobre TLS/SSL",
+        "severity": "media",
+        "impact": "Si se expone, puede ser objetivo de ataques automatizados para explotar configuraciones débiles de TLS o credenciales.",
+        "tech_recommendation": "Permitir acceso solo desde redes autorizadas, deshabilitar TLS obsoleto, aplicar controles de IDS/IPS."
+    },
+    {
+        "port": "993",
+        "service_name": "IMAP over SSL (IMAPS)",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Acceso a Mensajes de Internet sobre TLS/SSL (IMAPS)",
+        "severity": "media",
+        "impact": "Exposición permite ataques de fuerza bruta o explotación de vulnerabilidades en servidores de correo, comprometiendo cuentas.",
+        "tech_recommendation": "Aplicar bloqueo tras intentos fallidos, habilitar MFA en cuentas, restringir acceso solo a usuarios autorizados."
+    },
+    {
+        "port": "995",
+        "service_name": "POP3 over SSL (POP3S)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Oficina de Correo 3 sobre TLS/SSL (POP3S)",
+        "severity": "media",
+        "impact": "Servicios POP3 expuestos suelen ser blanco de ataques de fuerza bruta y pueden filtrar credenciales de correo.",
+        "tech_recommendation": "Limitar acceso, reforzar contraseñas, implementar cifrado fuerte y monitorear intentos fallidos."
+    },
+    {
+        "port": "1025",
+        "service_name": "Microsoft RPC",
+        "transport_protocol": "TCP",
+        "description": "Llamadas a Procedimiento Remoto de Microsoft (RPC)",
+        "severity": "media",
+        "impact": "RPC ha sido históricamente explotado en gusanos y ransomware; la exposición eleva el riesgo de ejecución remota de código.",
+        "tech_recommendation": "Bloquear acceso desde Internet, exponer solo en LAN, mantener parches críticos aplicados."
+    },
+    {
+        "port": "1026-1029",
+        "service_name": "Windows Messenger",
+        "transport_protocol": "UDP",
+        "description": "Spam emergente de Windows Messenger",
+        "severity": "media",
+        "impact": "Estos puertos son usados para enviar spam de red o como vector de explotación en sistemas obsoletos.",
+        "tech_recommendation": "Cerrar o filtrar estos puertos, deshabilitar Windows Messenger Service en sistemas antiguos."
+    },
+    {
+        "port": "1080",
+        "service_name": "MyDoom",
+        "transport_protocol": "TCP",
+        "description": "Virus informático",
+        "severity": "media",
+        "impact": "El puerto 1080 fue explotado por el gusano MyDoom y suele ser aprovechado como proxy abierto para actividades maliciosas.",
+        "tech_recommendation": "Cerrar el puerto, verificar que no se use como proxy abierto, escanear en busca de malware."
+    },
+    {
+        "port": "1194",
+        "service_name": "OpenVPN",
+        "transport_protocol": "TCP, UDP",
+        "description": "OpenVPN",
+        "severity": "media",
+        "impact": "Si se encuentra mal configurado puede permitir acceso remoto no autorizado a la red interna.",
+        "tech_recommendation": "Usar certificados fuertes, TLS 1.2/1.3, deshabilitar credenciales débiles, y segmentar accesos."
+    },
+    {
+        "port": "1214",
+        "service_name": "KAZAA",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de intercambio de archivos entre pares (P2P)",
+        "severity": "media",
+        "impact": "Exposición de red a intercambio de archivos inseguros que podrían incluir malware.",
+        "tech_recommendation": "Bloquear o deshabilitar el servicio; monitorear tráfico P2P en la red corporativa."
+    },
+    {
+        "port": "1241",
+        "service_name": "Nessus",
+        "transport_protocol": "TCP, UDP",
+        "description": "Escáner de Seguridad Nessus",
+        "severity": "media",
+        "impact": "Acceso no autorizado podría permitir escaneo de vulnerabilidades en la red interna.",
+        "tech_recommendation": "Restringir acceso por firewall solo a administradores autorizados y usar autenticación segura."
+    },
+    {
+        "port": "1311",
+        "service_name": "Dell OpenManage",
+        "transport_protocol": "TCP",
+        "description": "Interfaz Web de Administración de Servidor Dell EMC OpenManage",
+        "severity": "media",
+        "impact": "Exposición podría permitir a un atacante administrar servidores remotamente.",
+        "tech_recommendation": "Restringir acceso a redes de gestión y mantener siempre actualizado el software."
+    },
+    {
+        "port": "1337",
+        "service_name": "WASTE",
+        "transport_protocol": "TCP",
+        "description": "Programa WASTE de intercambio de archivos entre pares cifrados",
+        "severity": "alta",
+        "impact": "Uso indebido del servicio puede generar fuga de información y entrada de malware.",
+        "tech_recommendation": "Deshabilitar el servicio en entornos corporativos; aplicar control de aplicaciones."
+    },
+    {
+        "port": "1589",
+        "service_name": "Cisco VQP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Consulta de VLAN de Cisco (VQP)",
+        "severity": "media",
+        "impact": "Ataques podrían alterar asignaciones de VLAN, afectando segmentación de red.",
+        "tech_recommendation": "Configurar autenticación segura y restringir acceso solo a equipos autorizados."
+    },
+    {
+        "port": "1701",
+        "service_name": "L2TP VPN",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Tunelización de Capa Dos (L2TP) para Redes Privadas Virtuales",
+        "severity": "media",
+        "impact": "Puede ser vulnerable si se usa sin IPSec o con contraseñas débiles.",
+        "tech_recommendation": "Usar L2TP sobre IPSec con algoritmos fuertes y credenciales seguras."
+    },
+    {
+        "port": "1720",
+        "service_name": "H.323",
+        "transport_protocol": "TCP",
+        "description": "Señalización de Control de Llamadas H.323, un protocolo de control de llamadas VoIP",
+        "severity": "media",
+        "impact": "Exposición puede llevar a abuso de llamadas VoIP y fraude telefónico.",
+        "tech_recommendation": "Restringir acceso, habilitar cifrado en comunicaciones VoIP y aplicar SBC."
+    },
+    {
+        "port": "1723",
+        "service_name": "Microsoft PPTP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Tunelización Punto a Punto (PPTP) para Redes Privadas Virtuales",
+        "severity": "media",
+        "impact": "PPTP es inseguro y vulnerable a ataques de descifrado de contraseñas.",
+        "tech_recommendation": "Migrar a VPN modernas como OpenVPN o IKEv2/IPSec."
+    },
+    {
+        "port": "1725",
+        "service_name": "Steam",
+        "transport_protocol": "UDP",
+        "description": "El cliente de Valve Steam usa el puerto 1725",
+        "severity": "media",
+        "impact": "Podría ser explotado para generar tráfico no deseado o consumo de ancho de banda.",
+        "tech_recommendation": "Restringir el uso en redes corporativas y monitorear tráfico de gaming."
+    },
+    {
+        "port": "1741",
+        "service_name": "CiscoWorks SNMS 2000",
+        "transport_protocol": "TCP",
+        "description": "Servidor web de CiscoWorks Small Network Management Solution",
+        "severity": "media",
+        "impact": "Exposición de consola de gestión podría comprometer toda la red.",
+        "tech_recommendation": "Restringir acceso a administradores y actualizar software a versiones seguras."
+    },
+    {
+        "port": "1755",
+        "service_name": "MMS",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servidor de Medios de Microsoft (MMS)",
+        "severity": "media",
+        "impact": "Puede ser aprovechado para exfiltración de datos o distribución de malware.",
+        "tech_recommendation": "Migrar a protocolos de streaming modernos y restringir exposición pública."
+    },
+    {
+        "port": "1812",
+        "service_name": "RADIUS",
+        "transport_protocol": "UDP",
+        "description": "Autenticación y autorización de servidor RADIUS",
+        "severity": "media",
+        "impact": "Un atacante podría interceptar credenciales o manipular autenticación.",
+        "tech_recommendation": "Usar RADIUS con cifrado (RadSec), restringir accesos y usar contraseñas fuertes."
+    },
+    {
+        "port": "1813",
+        "service_name": "RADIUS",
+        "transport_protocol": "UDP",
+        "description": "Contabilidad de servidor RADIUS",
+        "severity": "media",
+        "impact": "Exposición podría manipular registros de acceso y facturación de usuarios.",
+        "tech_recommendation": "Restringir acceso y habilitar cifrado seguro para registros."
+    },
+    {
+        "port": "1863",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "MSN Messenger, Xbox Live 360",
+        "severity": "media",
+        "impact": "Podría ser usado para bypass de políticas de red o exfiltración de datos.",
+        "tech_recommendation": "Restringir servicio y aplicar políticas de control de aplicaciones."
+    },
+    {
+        "port": "1900",
+        "service_name": "UPnP",
+        "transport_protocol": "UDP",
+        "description": "Universal Plug and Play (UPnP)",
+        "severity": "alta",
+        "impact": "UPnP expuesto es altamente explotable y puede permitir acceso directo a dispositivos internos.",
+        "tech_recommendation": "Deshabilitar UPnP en entornos corporativos o restringirlo a redes internas confiables."
+    },
+    {
+        "port": "1985",
+        "service_name": "Cisco HSRP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Enrutador en Espera en Caliente (HSRP)",
+        "severity": "media",
+        "impact": "Exponer HSRP permite a un atacante interceptar o falsificar mensajes de enrutamiento de alta disponibilidad, causando redirección de tráfico o interrupciones.",
+        "tech_recommendation": "Restringir la exposición de HSRP únicamente a redes internas confiables. Usar ACLs para filtrar el tráfico y segmentar la red."
+    },
+    {
+        "port": "2000",
+        "service_name": "Cisco SCCP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Control de Cliente Delgado (SCCP)",
+        "severity": "media",
+        "impact": "La exposición de SCCP permite manipulación de llamadas VoIP, intercepción de audio o denegación de servicio en sistemas de telefonía IP.",
+        "tech_recommendation": "Limitar el acceso al puerto únicamente a dispositivos internos de VoIP. Implementar segmentación de red y cifrado de señalización cuando sea posible."
+    },
+    {
+        "port": "2002",
+        "service_name": "Cisco ACS",
+        "transport_protocol": "TCP",
+        "description": "Servidor de Control de Acceso",
+        "severity": "media",
+        "impact": "Exponer Cisco ACS puede permitir intentos de fuerza bruta y acceso no autorizado a credenciales de autenticación centralizada.",
+        "tech_recommendation": "Restringir el acceso al puerto desde direcciones IP autorizadas. Habilitar MFA y monitoreo de accesos sospechosos."
+    },
+    {
+        "port": "2049",
+        "service_name": "NFS",
+        "transport_protocol": "UDP",
+        "description": "Sistema de Archivos de Red (NFS)",
+        "severity": "media",
+        "impact": "Un NFS expuesto permite robo o modificación de archivos, así como acceso no autorizado a sistemas críticos.",
+        "tech_recommendation": "Restringir NFS únicamente a la red interna. Configurar exportaciones seguras y usar firewalls para bloquear el acceso externo."
+    },
+    {
+        "port": "2082",
+        "service_name": "cPanel",
+        "transport_protocol": "TCP, UDP",
+        "description": "Puerto predeterminado de cPanel",
+        "severity": "media",
+        "impact": "Exponer cPanel sin protección puede resultar en explotación de vulnerabilidades conocidas, comprometiendo la administración del servidor.",
+        "tech_recommendation": "Forzar el uso de conexiones HTTPS (puerto 2083), habilitar firewalls de aplicación web y restringir acceso por IP."
+    },
+    {
+        "port": "2083",
+        "service_name": "radsec, cPanel",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servicio RADIUS Seguro (radsec), cPanel predeterminado SSL",
+        "severity": "media",
+        "impact": "Aunque usa SSL, si no está actualizado puede exponer vulnerabilidades que permitan robo de credenciales o abuso administrativo.",
+        "tech_recommendation": "Mantener cPanel y RadSec actualizados, aplicar TLS fuerte y restringir acceso únicamente a IPs administrativas."
+    },
+    {
+        "port": "2100",
+        "service_name": "amiganetfs",
+        "transport_protocol": "TCP",
+        "description": "Sistema de Archivos de Red Amiga",
+        "severity": "media",
+        "impact": "Puede permitir acceso no autorizado a sistemas de archivos, especialmente si se usa sin autenticación robusta.",
+        "tech_recommendation": "Deshabilitar si no es necesario. Restringir acceso mediante firewall y autenticación fuerte."
+    },
+    {
+        "port": "2222",
+        "service_name": "DirectAdmin",
+        "transport_protocol": "TCP",
+        "description": "Panel de control gráfico de alojamiento web",
+        "severity": "media",
+        "impact": "Exponer DirectAdmin puede resultar en intentos de fuerza bruta, explotación de vulnerabilidades y toma de control del servidor.",
+        "tech_recommendation": "Restringir acceso administrativo por IP, habilitar 2FA y aplicar parches de seguridad frecuentes."
+    },
+    {
+        "port": "2302",
+        "service_name": "Gaming",
+        "transport_protocol": "UDP",
+        "description": "El juego HALO utiliza ampliamente este puerto",
+        "severity": "media",
+        "impact": "Exponer puertos de gaming puede ser explotado para ataques de denegación de servicio (DoS) o manipulación de sesiones.",
+        "tech_recommendation": "Filtrar tráfico de este puerto en redes corporativas y restringir su uso solo en entornos de gaming controlados."
+    },
+    {
+        "port": "2483",
+        "service_name": "Oracle",
+        "transport_protocol": "TCP, UDP",
+        "description": "Base de datos Oracle escuchando conexiones de clientes inseguros al listener, reemplaza al puerto 1521",
+        "severity": "media",
+        "impact": "Exposición de Oracle sin cifrado facilita ataques de enumeración de usuarios, robo de credenciales y acceso no autorizado a datos.",
+        "tech_recommendation": "Forzar el uso de conexiones cifradas (SSL/TLS). Restringir acceso a clientes autorizados mediante firewalls."
+    },
+    {
+        "port": "2484",
+        "service_name": "Oracle",
+        "transport_protocol": "TCP, UDP",
+        "description": "Base de datos Oracle escuchando conexiones de clientes SSL al listener",
+        "severity": "media",
+        "impact": "Aunque usa SSL, si está mal configurado puede permitir ataques de downgrade, fuga de información y abuso de autenticación.",
+        "tech_recommendation": "Mantener Oracle actualizado, usar cifrado TLS fuerte y restringir conexiones únicamente desde redes internas."
+    },
+    {
+        "port": "2745",
+        "service_name": "Bagle.C – Bagle.H",
+        "transport_protocol": "TCP",
+        "description": "Gusanos informáticos",
+        "severity": "media",
+        "impact": "Exposición de este puerto indica actividad maliciosa previa o activa. Puede ser usado para propagación de gusanos y puertas traseras.",
+        "tech_recommendation": "Cerrar inmediatamente el puerto, ejecutar análisis antivirus y reforzar controles de seguridad perimetral."
+    },
+    {
+        "port": "2967",
+        "service_name": "Symantec AV",
+        "transport_protocol": "TCP, UDP",
+        "description": "Agente de Symantec System Center (SSC-AGENT)",
+        "severity": "media",
+        "impact": "Un atacante puede abusar del puerto para manipular comunicaciones del agente antivirus o interrumpir servicios de seguridad.",
+        "tech_recommendation": "Restringir acceso únicamente a servidores de gestión autorizados y mantener actualizado Symantec AV."
+    },
+    {
+        "port": "3050",
+        "service_name": "Interbase DB",
+        "transport_protocol": "TCP, UDP",
+        "description": "Base de datos Borland Interbase",
+        "severity": "media",
+        "impact": "Exponer Interbase DB permite acceso no autorizado a bases de datos, lectura o modificación de información crítica.",
+        "tech_recommendation": "Restringir acceso únicamente a hosts autorizados. Usar autenticación fuerte y cifrado de datos en tránsito."
+    },
+    {
+        "port": "3074",
+        "service_name": "XBOX Live",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gaming: Xbox LIVE y Games for Windows – Live",
+        "severity": "media",
+        "impact": "Exposición de este puerto puede permitir ataques DDoS o manipulación de sesiones de juego.",
+        "tech_recommendation": "Restringir a redes de juegos confiables y usar firewalls para limitar tráfico externo."
+    },
+    {
+        "port": "3127",
+        "service_name": "MyDoom",
+        "transport_protocol": "TCP",
+        "description": "Gusano informático",
+        "severity": "media",
+        "impact": "Puerto asociado a gusanos que permite propagación y ejecución de malware en la red.",
+        "tech_recommendation": "Cerrar inmediatamente el puerto, ejecutar análisis antivirus y mantener los sistemas parcheados."
+    },
+    {
+        "port": "3128",
+        "service_name": "HTTP Proxy",
+        "transport_protocol": "TCP",
+        "description": "Puertos comunes de servidores proxy web: 80, 8080, 3128, 6588",
+        "severity": "media",
+        "impact": "Exponer proxy permite abuso para ocultar tráfico malicioso o acceder a la red interna sin autorización.",
+        "tech_recommendation": "Restringir el uso del proxy a usuarios internos. Configurar autenticación y limitar conexiones externas."
+    },
+    {
+        "port": "3222",
+        "service_name": "GLBP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Balanceo de Carga de Gateway (GLBP)",
+        "severity": "media",
+        "impact": "Exponer GLBP puede permitir manipulación de enrutamiento, denegación de servicio o suplantación de gateway.",
+        "tech_recommendation": "Limitar el acceso a routers y dispositivos de red confiables. Usar ACLs y segmentación de red."
+    },
+    {
+        "port": "3260",
+        "service_name": "iSCSI Target",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servidor Microsoft iSCSI Target",
+        "severity": "media",
+        "impact": "Exposición permite acceso no autorizado a almacenamiento remoto, robo de datos o modificación de volúmenes.",
+        "tech_recommendation": "Restringir acceso a redes internas. Usar autenticación y cifrado para conexiones iSCSI."
+    },
+    {
+        "port": "3306",
+        "service_name": "MySQL",
+        "transport_protocol": "TCP",
+        "description": "Sistema de base de datos MySQL",
+        "severity": "alta",
+        "impact": "Exponer MySQL permite ataques de inyección, acceso no autorizado a bases de datos y filtración de información sensible.",
+        "tech_recommendation": "Restringir acceso a hosts confiables, habilitar autenticación fuerte, cifrado y auditoría de accesos."
+    },
+    {
+        "port": "3389",
+        "service_name": "RDP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Escritorio Remoto de Windows (RDP, Microsoft Terminal Server)",
+        "severity": "alta",
+        "impact": "Exposición de RDP permite ataques de fuerza bruta, ejecución remota de código y compromiso del sistema.",
+        "tech_recommendation": "Usar VPN para acceso remoto, habilitar autenticación multifactor, limitar intentos de conexión y monitorear logs."
+    },
+    {
+        "port": "3689",
+        "service_name": "DAAP",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Acceso de Audio Digital (DAAP), usado por iTunes y AirPort Express de Apple",
+        "severity": "media",
+        "impact": "Exponer DAAP permite acceso no autorizado a bibliotecas multimedia y posible fuga de información del usuario.",
+        "tech_recommendation": "Restringir acceso a la red interna y usar firewalls para filtrar tráfico externo."
+    },
+    {
+        "port": "3690",
+        "service_name": "SVN",
+        "transport_protocol": "TCP, UDP",
+        "description": "Apache Subversion, un sistema de control de versiones",
+        "severity": "media",
+        "impact": "Exposición de SVN permite acceso no autorizado a repositorios de código fuente, robo de información o modificaciones maliciosas.",
+        "tech_recommendation": "Restringir acceso a desarrolladores autorizados, usar autenticación fuerte y conexiones cifradas (HTTPS/SSH)."
+    },
+    {
+        "port": "3724",
+        "service_name": "World of Warcraft",
+        "transport_protocol": "TCP, UDP",
+        "description": "Algunos juegos de Blizzard, juego en línea no oficial Club Penguin de Disney para niños",
+        "severity": "media",
+        "impact": "Exposición de este puerto puede permitir tráfico de juego no controlado, abusos de ancho de banda o ataques DDoS.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados y limitar el tráfico externo mediante firewall."
+    },
+    {
+        "port": "3784-3785",
+        "service_name": "Ventrilo VoIP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Programa de Voz sobre Protocolo de Internet (VoIP) de Ventrilo",
+        "severity": "media",
+        "impact": "Exposición permite interceptación de comunicaciones VoIP o abuso de la plataforma para tráfico no deseado.",
+        "tech_recommendation": "Usar VPN o redes internas seguras para el servicio y autenticación obligatoria."
+    },
+    {
+        "port": "4333",
+        "service_name": "mSQL",
+        "transport_protocol": "TCP",
+        "description": "Servidor Mini SQL",
+        "severity": "media",
+        "impact": "Acceso no autorizado puede permitir consultas o modificaciones de la base de datos, filtrando información sensible.",
+        "tech_recommendation": "Restringir el acceso a hosts internos, usar autenticación fuerte y cifrado de conexiones."
+    },
+    {
+        "port": "4444",
+        "service_name": "Blaster",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gusano informático",
+        "severity": "media",
+        "impact": "Puerto asociado a gusanos que pueden propagar malware y comprometer sistemas internos.",
+        "tech_recommendation": "Cerrar inmediatamente el puerto, ejecutar análisis antivirus y mantener sistemas actualizados."
+    },
+    {
+        "port": "4500",
+        "service_name": "IPSec NAT Traversal",
+        "transport_protocol": "UDP",
+        "description": "Seguridad de Protocolo de Internet (IPsec) con Traversal de Traducción de Direcciones de Red (NAT)",
+        "severity": "media",
+        "impact": "Exposición de este puerto puede permitir bypass de NAT y posibles ataques sobre VPN IPSec.",
+        "tech_recommendation": "Restringir tráfico a hosts confiables y asegurar autenticación y cifrado de IPSec."
+    },
+    {
+        "port": "4664",
+        "service_name": "Google Desktop",
+        "transport_protocol": "TCP",
+        "description": "Servidor HTTP incorporado y software de indexación de Google Desktop",
+        "severity": "media",
+        "impact": "Exposición permite acceso no autorizado a archivos locales y potencial filtración de información sensible.",
+        "tech_recommendation": "Cerrar el puerto a Internet, restringir acceso a red interna y desactivar servicios no usados."
+    },
+    {
+        "port": "4672",
+        "service_name": "eMule",
+        "transport_protocol": "UDP",
+        "description": "Software de intercambio de archivos entre pares (P2P)",
+        "severity": "media",
+        "impact": "Exposición permite intercambio de archivos no controlado, posible filtración de datos y uso indebido de ancho de banda.",
+        "tech_recommendation": "Restringir el puerto a redes internas o deshabilitarlo si no se utiliza. Monitorear tráfico P2P."
+    },
+    {
+        "port": "4899",
+        "service_name": "Radmin",
+        "transport_protocol": "TCP",
+        "description": "Software de control remoto de computadoras",
+        "severity": "media",
+        "impact": "Exponer Radmin permite control remoto no autorizado, ejecución de comandos y acceso a información sensible.",
+        "tech_recommendation": "Restringir a hosts confiables, usar VPN y autenticación fuerte. Monitorear conexiones remotas."
+    },
+    {
+        "port": "5000",
+        "service_name": "UPnP",
+        "transport_protocol": "TCP",
+        "description": "Universal Plug and Play (UPnP)",
+        "severity": "media",
+        "impact": "Exponer UPnP permite ataques de descubrimiento de red, reconfiguración de NAT y posible acceso a dispositivos internos.",
+        "tech_recommendation": "Desactivar UPnP en la red pública, restringir a redes confiables y monitorear tráfico de red."
+    },
+    {
+        "port": "5001",
+        "service_name": "iperf",
+        "transport_protocol": "TCP",
+        "description": "Herramienta para medir el rendimiento de ancho de banda TCP y UDP",
+        "severity": "media",
+        "impact": "Exposición permite pruebas de ancho de banda no autorizadas que pueden ser usadas para mapear la red o generar congestión.",
+        "tech_recommendation": "Restringir acceso a hosts confiables o redes internas. Evitar exponer a Internet."
+    },
+    {
+        "port": "5004-5005",
+        "service_name": "RTP, RTSP",
+        "transport_protocol": "UDP",
+        "description": "Protocolo de Transporte en Tiempo Real (RTP), Protocolo de Transmisión en Tiempo Real (RTSP)",
+        "severity": "media",
+        "impact": "Exposición permite sniffing de tráfico de medios, inyección de paquetes y ataques de denegación de servicio.",
+        "tech_recommendation": "Usar cifrado SRTP/TLS, autenticar clientes y restringir el acceso a redes de confianza."
+    },
+    {
+        "port": "5050",
+        "service_name": "Yahoo! Messenger",
+        "transport_protocol": "TCP",
+        "description": "Servicio de mensajería instantánea de Yahoo",
+        "severity": "media",
+        "impact": "Exponer este puerto puede permitir comunicación no autorizada y posible filtración de información a través del chat.",
+        "tech_recommendation": "Deshabilitar servicio si no se usa. Restringir a red interna y asegurar autenticación."
+    },
+    {
+        "port": "5060",
+        "service_name": "SIP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Inicio de Sesión (SIP)",
+        "severity": "media",
+        "impact": "Exposición permite ataques VoIP como interceptación de llamadas, fraude de llamadas y DoS al servidor SIP.",
+        "tech_recommendation": "Restringir acceso a hosts autorizados, usar TLS para cifrado y autenticación fuerte."
+    },
+    {
+        "port": "5061",
+        "service_name": "SIP-TLS",
+        "transport_protocol": "TCP",
+        "description": "Protocolo de Inicio de Sesión (SIP) sobre TLS",
+        "severity": "media",
+        "impact": "Aunque cifrado, la exposición aún permite ataques de denegación de servicio y descubrimiento de servicios SIP.",
+        "tech_recommendation": "Restringir acceso a redes internas, mantener TLS actualizado y habilitar autenticación de usuarios."
+    },
+    {
+        "port": "5190",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "ICQ, AIM (AOL Instant Messenger), Apple iChat",
+        "severity": "media",
+        "impact": "Exponer estos servicios puede permitir comunicación no autorizada, filtración de información o propagación de malware vía mensajería.",
+        "tech_recommendation": "Deshabilitar servicios de mensajería no usados, restringir a red interna y monitorear tráfico de red."
+    },
+    {
+        "port": "5222-5223",
+        "service_name": "XMPP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Conexión de Cliente del Protocolo Extensible de Mensajería y Presencia (XMPP); también usado en Google Talk, Jabber, Apple iChat, WhatsApp, etc.",
+        "severity": "media",
+        "impact": "Exponer XMPP permite interceptación de mensajes, spoofing y posibles ataques DoS a los servicios de mensajería.",
+        "tech_recommendation": "Restringir acceso a redes internas o clientes autorizados, usar cifrado TLS y autenticación fuerte."
+    },
+    {
+        "port": "5353",
+        "service_name": "MDNS",
+        "transport_protocol": "UDP",
+        "description": "DNS Multidifusión (mDNS)",
+        "severity": "media",
+        "impact": "Exponer mDNS permite descubrimiento de dispositivos y servicios en la red, facilitando enumeración y ataques posteriores.",
+        "tech_recommendation": "Restringir a redes locales de confianza, deshabilitar mDNS en interfaces públicas."
+    },
+    {
+        "port": "5432",
+        "service_name": "PostgreSQL",
+        "transport_protocol": "TCP",
+        "description": "Sistema de base de datos PostgreSQL",
+        "severity": "alta",
+        "impact": "Exposición permite acceso remoto a bases de datos, posible exfiltración de información o manipulación de datos.",
+        "tech_recommendation": "Bloquear acceso desde Internet, usar firewall y VPN, habilitar autenticación y cifrado SSL."
+    },
+    {
+        "port": "5554",
+        "service_name": "Sasser",
+        "transport_protocol": "TCP",
+        "description": "Gusano informático",
+        "severity": "media",
+        "impact": "Exposición podría permitir propagación de malware o explotación de vulnerabilidades conocidas del sistema.",
+        "tech_recommendation": "Cerrar puerto en Internet, mantener sistemas actualizados y monitorear tráfico de red."
+    },
+    {
+        "port": "5631-5632",
+        "service_name": "pcAnywhere",
+        "transport_protocol": "UDP",
+        "description": "Symantec pcAnywhere",
+        "severity": "media",
+        "impact": "Exponer pcAnywhere permite acceso remoto no autorizado, ataques de fuerza bruta y ejecución remota de código.",
+        "tech_recommendation": "Deshabilitar si no se usa, restringir acceso mediante VPN y autenticación robusta."
+    },
+    {
+        "port": "5800",
+        "service_name": "VNC over HTTP",
+        "transport_protocol": "TCP",
+        "description": "Computación de Red Virtual (VNC)",
+        "severity": "media",
+        "impact": "Exposición permite control remoto del escritorio sin restricciones, riesgo de espionaje o acceso no autorizado.",
+        "tech_recommendation": "Restringir a red interna o VPN, usar contraseñas fuertes y cifrado TLS/SSL si es posible."
+    },
+    {
+        "port": "5900-5999",
+        "service_name": "RFB/VNC Server",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo Remote Frame Buffer (RFB) de VNC",
+        "severity": "alta",
+        "impact": "Exposición permite acceso completo al escritorio remoto, exfiltración de datos y control no autorizado del sistema.",
+        "tech_recommendation": "Bloquear acceso público, usar VPN y contraseñas fuertes, habilitar cifrado de sesión."
+    },
+    {
+        "port": "6000",
+        "service_name": "X11",
+        "transport_protocol": "TCP",
+        "description": "Protocolo del Sistema de Ventanas X (X Window System) para transmitir datos entre clientes y servidores X",
+        "severity": "media",
+        "impact": "Exposición permite ataques remotos a la interfaz gráfica, keylogging y acceso a sesiones de usuario.",
+        "tech_recommendation": "Restringir acceso a localhost o VPN, usar túneles cifrados (SSH) para X11."
+    },
+    {
+        "port": "6001",
+        "service_name": "X11",
+        "transport_protocol": "UDP",
+        "description": "Protocolo del Sistema de Ventanas X (X Window System) para transmitir datos entre clientes y servidores X",
+        "severity": "media",
+        "impact": "Exposición permite sniffing y manipulación de la sesión gráfica, riesgo de escalamiento de privilegios.",
+        "tech_recommendation": "Bloquear en interfaces públicas, usar túneles SSH para conexiones X11 remotas."
+    },
+    {
+        "port": "6112",
+        "service_name": "Diablo    ",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gaming",
+        "severity": "media",
+        "impact": "Exposición permite ataques a servidores de juego, posibles DoS o explotación de vulnerabilidades del cliente.",
+        "tech_recommendation": "Restringir acceso solo a clientes autorizados y redes internas, actualizar software de juego regularmente."
+    },
+    {
+        "port": "6129",
+        "service_name": "DameWare",
+        "transport_protocol": "TCP",
+        "description": "Software de acceso remoto desarrollado por SolarWinds",
+        "severity": "media"
+    },
+    {
+        "port": "6257",
+        "service_name": "WinMX",
+        "transport_protocol": "UDP",
+        "description": "Windows Music Exchange, software gratuito de intercambio de archivos entre pares",
+        "severity": "media",
+        "impact": "Exposición permite transferencia de archivos no autorizada, posible malware y fugas de información.",
+        "tech_recommendation": "Bloquear acceso público, usar firewalls y restringir a redes internas confiables."
+    },
+    {
+        "port": "6346-6347",
+        "service_name": "Gnutella2",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de red entre pares (P2P)",
+        "severity": "media",
+        "impact": "Exposición permite intercambio de archivos no controlado y posible propagación de malware.",
+        "tech_recommendation": "Restringir tráfico a redes internas, deshabilitar puertos si no se usan."
+    },
+    {
+        "port": "6379",
+        "service_name": "Redis",
+        "transport_protocol": "TCP",
+        "description": "Sistema de gestión de bases de datos no relacional popular (NoSQL)",
+        "severity": "media",
+        "impact": "Exposición puede permitir acceso remoto no autorizado a datos y manipulación de información.",
+        "tech_recommendation": "Restringir acceso a localhost o VPN, habilitar autenticación y cifrado."
+    },
+    {
+        "port": "6500",
+        "service_name": "GameSpy",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gaming",
+        "severity": "media",
+        "impact": "Exposición permite ataques a servidores de juego o explotación de vulnerabilidades del cliente.",
+        "tech_recommendation": "Restringir a clientes autorizados y mantener el software actualizado."
+    },
+    {
+        "port": "6566",
+        "service_name": "SANE",
+        "transport_protocol": "TCP, UDP",
+        "description": "Scanner Access Now Easy (SANE)",
+        "severity": "media",
+        "impact": "Exposición permite acceso no autorizado a escáneres y posibles fugas de información.",
+        "tech_recommendation": "Restringir acceso a la red interna y habilitar autenticación donde sea posible."
+    },
+    {
+        "port": "6588",
+        "service_name": "HTTP Proxy",
+        "transport_protocol": "TCP",
+        "description": "Puertos comunes de servidores proxy web: 80, 8080, 3128, 6588",
+        "severity": "media",
+        "impact": "Exposición puede permitir bypass de políticas de red, acceso no autorizado o filtrado de tráfico.",
+        "tech_recommendation": "Restringir a usuarios autorizados, habilitar autenticación y registro de acceso."
+    },
+    {
+        "port": "6665-6669",
+        "service_name": "IRC",
+        "transport_protocol": "TCP",
+        "description": "Internet Relay Chat (IRC)",
+        "severity": "media",
+        "impact": "Exposición permite comunicación sin control, posible propagación de malware o comandos remotos.",
+        "tech_recommendation": "Restringir a redes internas o VPN, monitorear tráfico IRC."
+    },
+    {
+        "port": "6679, 6697",
+        "service_name": "IRC over SSL",
+        "transport_protocol": "TCP",
+        "description": "Internet Relay Chat (IRC)",
+        "severity": "media",
+        "impact": "Exposición cifrada permite comunicación IRC externa, dificultando inspección y filtrado.",
+        "tech_recommendation": "Restringir acceso a usuarios confiables, monitorear endpoints y logs de conexión."
+    },
+    {
+        "port": "6699",
+        "service_name": "Napster",
+        "transport_protocol": "TCP",
+        "description": "Aplicación de intercambio de archivos entre pares (P2P)",
+        "severity": "media",
+        "impact": "Exposición permite intercambio de archivos no autorizado y posible malware.",
+        "tech_recommendation": "Bloquear en firewall, restringir acceso a redes internas confiables."
+    },
+    {
+        "port": "6881-6999",
+        "service_name": "BitTorrent",
+        "transport_protocol": "TCP, UDP",
+        "description": "BitTorrent usa este rango de puertos con mayor frecuencia",
+        "severity": "media",
+        "impact": "Exposición permite intercambio de archivos P2P no controlado y propagación de malware.",
+        "tech_recommendation": "Bloquear puertos en Internet, permitir solo tráfico interno seguro si se requiere."
+    },
+    {
+        "port": "6891-6901",
+        "service_name": "Windows Live Messenger",
+        "transport_protocol": "TCP, UDP",
+        "description": "Alternativamente: MSN Messenger",
+        "severity": "media",
+        "impact": "Exposición permite comunicación externa sin control, posible propagación de malware y fuga de información.",
+        "tech_recommendation": "Bloquear acceso externo, permitir solo en redes internas confiables, monitorear tráfico."
+    },
+    {
+        "port": "6970",
+        "service_name": "Quicktime",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servidor de transmisión QuickTime",
+        "severity": "media",
+        "impact": "Exposición puede permitir acceso no autorizado a servicios de streaming y explotación de vulnerabilidades.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados, mantener servidor actualizado."
+    },
+    {
+        "port": "7000",
+        "service_name": "Cassandra",
+        "transport_protocol": "TCP",
+        "description": "Comunicación entre nodos dentro del clúster en Apache Cassandra",
+        "severity": "media",
+        "impact": "Exposición puede permitir acceso no autorizado a nodos y manipulación de datos de la base de datos.",
+        "tech_recommendation": "Restringir tráfico a nodos internos del cluster, habilitar autenticación y cifrado."
+    },
+    {
+        "port": "7001",
+        "service_name": "Cassandra",
+        "transport_protocol": "TCP",
+        "description": "Comunicación entre nodos con SSL dentro del clúster en Apache Cassandra",
+        "severity": "media",
+        "impact": "Exposición puede permitir acceso a nodos del cluster si SSL no está correctamente configurado.",
+        "tech_recommendation": "Verificar certificados SSL, restringir tráfico a nodos internos y habilitar autenticación."
+    },
+    {
+        "port": "7199",
+        "service_name": "Cassandra JMX",
+        "transport_protocol": "TCP",
+        "description": "Java Management Extensions en Apache Cassandra",
+        "severity": "media",
+        "impact": "Exposición permite gestión remota no autorizada de Cassandra, incluyendo lectura y escritura de datos.",
+        "tech_recommendation": "Restringir acceso a localhost o VPN, habilitar autenticación y cifrado."
+    },
+    {
+        "port": "7648-7649",
+        "service_name": "CU-SeeMe",
+        "transport_protocol": "TCP, UDP",
+        "description": "Cliente de videoconferencia por Internet desarrollado por la Universidad de Cornell",
+        "severity": "media",
+        "impact": "Exposición permite videoconferencias externas no controladas, posibles ataques de denegación o intercepción.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados y redes internas."
+    },
+    {
+        "port": "8000",
+        "service_name": "Internet Radio",
+        "transport_protocol": "TCP",
+        "description": "Puerto HTTP alternativo comúnmente elegido para aplicaciones web",
+        "severity": "media",
+        "impact": "Exposición permite acceso web externo, riesgo de ejecución de contenido no autorizado.",
+        "tech_recommendation": "Restringir a usuarios autorizados, habilitar firewall y monitoreo de tráfico."
+    },
+    {
+        "port": "8080",
+        "service_name": "HTTP Proxy",
+        "transport_protocol": "TCP",
+        "description": "Puertos comunes de servidores proxy web: 80, 8080, 3128, 6588",
+        "severity": "media",
+        "impact": "Exposición puede permitir bypass de políticas de red y acceso no autorizado a recursos internos.",
+        "tech_recommendation": "Habilitar autenticación, restringir a redes confiables, registrar accesos."
+    },
+    {
+        "port": "8086",
+        "service_name": "Kaspersky AV",
+        "transport_protocol": "TCP",
+        "description": "Centro de Control de Kaspersky AV",
+        "severity": "media",
+        "impact": "Exposición permite gestión remota de antivirus, riesgo de configuración no autorizada o manipulación de datos.",
+        "tech_recommendation": "Restringir acceso a administración interna y VPN, habilitar autenticación fuerte."
+    },
+    {
+        "port": "8087",
+        "service_name": "Kaspersky AV",
+        "transport_protocol": "UDP",
+        "description": "Centro de Control de Kaspersky AV",
+        "severity": "media",
+        "impact": "Exposición permite comunicación no segura con antivirus, riesgo de interceptación de datos.",
+        "tech_recommendation": "Restringir a redes internas, habilitar cifrado y autenticación."
+    },
+    {
+        "port": "8118",
+        "service_name": "Privoxy",
+        "transport_protocol": "TCP",
+        "description": "Proxy web para filtrado de publicidad",
+        "severity": "media",
+        "impact": "Exposición permite bypass de políticas de red y posible acceso a contenido no filtrado o malicioso.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados y redes confiables, habilitar autenticación."
+    },
+    {
+        "port": "8200",
+        "service_name": "VMware Server",
+        "transport_protocol": "TCP, UDP",
+        "description": "VMware vSphere Fault Tolerance",
+        "severity": "media",
+        "impact": "Exposición puede permitir administración remota no autorizada de servidores virtuales.",
+        "tech_recommendation": "Restringir acceso a administración interna, habilitar VPN y autenticación fuerte."
+    },
+    {
+        "port": "8222",
+        "service_name": "VMware Server",
+        "transport_protocol": "TCP, UDP",
+        "description": "Interfaz de Usuario de Gestión de Servidor VMware (interfaz web no segura)",
+        "severity": "media",
+        "impact": "Exposición de interfaz web insegura puede permitir control remoto de servidores virtuales y fuga de información.",
+        "tech_recommendation": "Habilitar autenticación segura, restringir acceso a redes internas o VPN, actualizar a versión segura."
+    },
+    {
+        "port": "8500",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Adobe ColdFusion, Protocolo de Transferencia de Mensajes de Vuelo (FMTP)",
+        "severity": "media",
+        "impact": "Exposición puede permitir ejecución de servicios no autorizados y posibles ataques remotos.",
+        "tech_recommendation": "Restringir acceso a servicios necesarios, mantener software actualizado y monitorear tráfico."
+    },
+    {
+        "port": "8767",
+        "service_name": "Teamspeak",
+        "transport_protocol": "UDP",
+        "description": "Sistema de comunicación VoIP para juegos en línea",
+        "severity": "media",
+        "impact": "Exposición permite comunicación externa sin control, riesgo de ataques de denegación o interceptación de tráfico.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados y redes confiables, habilitar cifrado si está disponible."
+    },
+    {
+        "port": "8866",
+        "service_name": "Bagle.B",
+        "transport_protocol": "TCP",
+        "description": "Gusano informático",
+        "severity": "media",
+        "impact": "Exposición de puerto usado por malware puede facilitar propagación o infección de sistemas vulnerables.",
+        "tech_recommendation": "Cerrar puerto innecesario, mantener sistemas actualizados y monitorear tráfico de red."
+    },
+    {
+        "port": "9042",
+        "service_name": "Cassandra",
+        "transport_protocol": "TCP",
+        "description": "Apache Cassandra, una base de datos NoSQL",
+        "severity": "media",
+        "impact": "Exposición permite acceso no autorizado a la base de datos, pudiendo manipular o exfiltrar datos.",
+        "tech_recommendation": "Restringir acceso a nodos internos o VPN, habilitar autenticación y cifrado."
+    },
+    {
+        "port": "9100",
+        "service_name": "PDL",
+        "transport_protocol": "TCP",
+        "description": "Flujo de Datos PDL, usado para impresión en ciertas impresoras de red",
+        "severity": "media",
+        "impact": "Exposición permite envío no autorizado de trabajos de impresión o manipulación de impresoras en red.",
+        "tech_recommendation": "Restringir acceso a impresoras, habilitar autenticación y monitorear tráfico de impresión."
+    },
+    {
+        "port": "9101-9103",
+        "service_name": "Bacula",
+        "transport_protocol": "TCP, UDP",
+        "description": "Para automatización de tareas de respaldo",
+        "severity": "media",
+        "impact": "Exposición permite administración remota de backups sin control, riesgo de pérdida o manipulación de datos.",
+        "tech_recommendation": "Restringir acceso a servidores de backup internos, habilitar autenticación y cifrado."
+    },
+    {
+        "port": "9119",
+        "service_name": "MXit",
+        "transport_protocol": "TCP, UDP",
+        "description": "Mensajería instantánea MXit (obsoleta)",
+        "severity": "media",
+        "impact": "Exposición permite comunicación no segura en un servicio obsoleto, riesgo de exploits históricos.",
+        "tech_recommendation": "Deshabilitar servicio si no es usado, restringir acceso a redes internas y mantener sistemas actualizados."
+    },
+    {
+        "port": "9800",
+        "service_name": "WebDAV",
+        "transport_protocol": "TCP, UDP",
+        "description": "Web-based Distributed Authoring and Versioning (WebDAV), una extensión de HTTP",
+        "severity": "media",
+        "impact": "Exposición permite modificación y carga de archivos remotos no autorizada, riesgo de ejecución remota de código.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados, deshabilitar métodos HTTP inseguros (PUT, DELETE) y usar autenticación fuerte."
+    },
+    {
+        "port": "9898",
+        "service_name": "Dabber",
+        "transport_protocol": "TCP",
+        "description": "Gusano informático (Sasser)",
+        "severity": "media",
+        "impact": "Exposición facilita propagación de malware y acceso no autorizado a sistemas vulnerables.",
+        "tech_recommendation": "Cerrar puerto si no se utiliza, mantener sistemas actualizados y contar con protección antimalware."
+    },
+    {
+        "port": "9999",
+        "service_name": "Urchin",
+        "transport_protocol": "TCP, UDP",
+        "description": "Urchin Web Analytics",
+        "severity": "media",
+        "impact": "Exposición permite acceso a información de análisis web sin control y posible explotación de vulnerabilidades antiguas.",
+        "tech_recommendation": "Restringir acceso a redes internas, habilitar autenticación y actualizar software a versiones soportadas."
+    },
+    {
+        "port": "10000",
+        "service_name": "(Multiple uses)",
+        "transport_protocol": "TCP, UDP",
+        "description": "Protocolo de Gestión de Datos en Red (NDMP); aplicaciones: Webmin, BackupExec, Viatalk; juegos: The Matrix Online, Dungeon Fighter",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto a interfaces administrativas y servicios de backup sin control, riesgo de manipulación o fuga de información.",
+        "tech_recommendation": "Restringir acceso a redes internas o VPN, habilitar autenticación fuerte y mantener software actualizado."
+    },
+    {
+        "port": "10113",
+        "service_name": "NetIQ",
+        "transport_protocol": "TCP, UDP",
+        "description": "NetIQ Endpoint",
+        "severity": "media",
+        "impact": "Exposición puede permitir gestión remota no autorizada de endpoints, riesgo de cambios maliciosos.",
+        "tech_recommendation": "Restringir acceso a administradores autorizados y habilitar cifrado y autenticación."
+    },
+    {
+        "port": "10114",
+        "service_name": "NetIQ",
+        "transport_protocol": "TCP, UDP",
+        "description": "NetIQ Qcheck",
+        "severity": "media",
+        "impact": "Exposición puede permitir diagnóstico y control remoto no autorizado, riesgo de divulgación de información de red.",
+        "tech_recommendation": "Restringir acceso a administradores autorizados y habilitar cifrado y autenticación."
+    },
+    {
+        "port": "10115",
+        "service_name": "NetIQ",
+        "transport_protocol": "TCP, UDP",
+        "description": "NetIQ Endpoint",
+        "severity": "media",
+        "impact": "Exposición permite administración de endpoints sin control, riesgo de cambios maliciosos o fuga de datos.",
+        "tech_recommendation": "Restringir acceso a administradores autorizados y habilitar cifrado y autenticación."
+    },
+    {
+        "port": "10116",
+        "service_name": "NetIQ",
+        "transport_protocol": "TCP, UDP",
+        "description": "NetIQ VoIP Assessor",
+        "severity": "media",
+        "impact": "Exposición permite monitorización de tráfico VoIP sin autorización, riesgo de intercepción de comunicaciones.",
+        "tech_recommendation": "Restringir acceso a redes internas, habilitar cifrado y autenticación."
+    },
+    {
+        "port": "10161",
+        "service_name": "SNMP-agents (encrypted)",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Simple de Administración de Red (SNMP); los agentes se comunican en este puerto",
+        "severity": "media",
+        "impact": "Exposición de agentes SNMP permite consulta no autorizada de información de red.",
+        "tech_recommendation": "Restringir acceso a hosts de gestión autorizados y usar SNMPv3 con cifrado y autenticación."
+    },
+    {
+        "port": "10162",
+        "service_name": "SNMP-trap (encrypted)",
+        "transport_protocol": "TCP",
+        "description": "Protocolo Simple de Administración de Red (SNMP); escucha notificaciones asíncronas (traps)",
+        "severity": "media",
+        "impact": "Exposición de traps SNMP permite envío o captura no autorizada de eventos de red.",
+        "tech_recommendation": "Restringir acceso a hosts de gestión autorizados y usar SNMPv3 con cifrado y autenticación."
+    },
+    {
+        "port": "11371",
+        "service_name": "OpenPGP",
+        "transport_protocol": "TCP, UDP",
+        "description": "Servidor de claves HTTP OpenPGP",
+        "severity": "media",
+        "impact": "Exposición permite subir o descargar claves PGP sin control, riesgo de distribución de claves maliciosas.",
+        "tech_recommendation": "Restringir acceso a usuarios confiables, usar HTTPS y monitorear el tráfico de claves."
+    },
+    {
+        "port": "12345",
+        "service_name": "NetBus",
+        "transport_protocol": "TCP",
+        "description": "Herramienta de administración remota NetBus (troyano)",
+        "severity": "media",
+        "impact": "Exposición permite control remoto malicioso del sistema, riesgo de robo de información y ejecución de código no autorizado.",
+        "tech_recommendation": "Cerrar inmediatamente el puerto, escanear sistemas en busca de malware y actualizar medidas de seguridad."
+    },
+    {
+        "port": "13720-13721",
+        "service_name": "NetBackup",
+        "transport_protocol": "TCP, UDP",
+        "description": "Demonio de solicitudes de NetBackup",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto a tareas de backup, riesgo de manipulación de datos o fuga de información.",
+        "tech_recommendation": "Restringir acceso a hosts autorizados, habilitar cifrado y autenticación, mantener software actualizado."
+    },
+    {
+        "port": "14567",
+        "service_name": "Battlefield",
+        "transport_protocol": "UDP",
+        "description": "Gaming",
+        "severity": "media",
+        "impact": "Exposición permite conexiones de juego externas sin control, posible DoS o interferencia de red.",
+        "tech_recommendation": "Restringir acceso mediante firewall a jugadores autorizados y monitorear tráfico de red."
+    },
+    {
+        "port": "15118",
+        "service_name": "Dipnet/Oddbob",
+        "transport_protocol": "TCP",
+        "description": "Troyano",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto malicioso, riesgo de ejecución de código no autorizado y robo de información.",
+        "tech_recommendation": "Cerrar puerto, eliminar cualquier malware asociado y mantener antivirus actualizado."
+    },
+    {
+        "port": "19226",
+        "service_name": "AdminSecure",
+        "transport_protocol": "TCP",
+        "description": "Agente de Comunicación Segura de Panda Software AdminSecure",
+        "severity": "media",
+        "impact": "Exposición permite acceso a comunicación de administración remota, riesgo de manipulación de políticas de seguridad.",
+        "tech_recommendation": "Restringir acceso a redes internas y autenticación fuerte, mantener software actualizado."
+    },
+    {
+        "port": "19638",
+        "service_name": "Ensim",
+        "transport_protocol": "TCP",
+        "description": "Panel de Control Ensim",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto al panel de control, riesgo de cambios no autorizados o fuga de información.",
+        "tech_recommendation": "Restringir acceso mediante firewall, usar autenticación fuerte y HTTPS."
+    },
+    {
+        "port": "20000",
+        "service_name": "Usermin",
+        "transport_protocol": "TCP, UDP",
+        "description": "Interfaz web de correo para usuarios regulares no root",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto al correo de usuarios, riesgo de suplantación y fuga de datos.",
+        "tech_recommendation": "Restringir acceso a usuarios autorizados, habilitar HTTPS y autenticación fuerte."
+    },
+    {
+        "port": "24800",
+        "service_name": "Synergy",
+        "transport_protocol": "TCP, UDP",
+        "description": "Software para compartir teclado/ratón",
+        "severity": "media",
+        "impact": "Exposición permite control remoto de teclado y ratón, riesgo de ejecución no autorizada de acciones.",
+        "tech_recommendation": "Restringir acceso a redes internas confiables y habilitar cifrado y autenticación."
+    },
+    {
+        "port": "25999",
+        "service_name": "Xfire",
+        "transport_protocol": "TCP",
+        "description": "Herramienta de comunicación para gamers (obsoleta)",
+        "severity": "media",
+        "impact": "Exposición permite acceso a chat y estadísticas de juegos sin control, riesgo de explotación de software obsoleto.",
+        "tech_recommendation": "Cerrar puerto si no se utiliza y migrar a soluciones de comunicación actualizadas."
+    },
+    {
+        "port": "27015",
+        "service_name": "Half-Life",
+        "transport_protocol": "UDP",
+        "description": "Gaming",
+        "severity": "media",
+        "impact": "Exposición permite tráfico de juegos externo, riesgo de DoS o interferencia de red.",
+        "tech_recommendation": "Restringir acceso mediante firewall solo a jugadores autorizados y monitorear tráfico de red."
+    },
+    {
+        "port": "27017",
+        "service_name": "MongoDB",
+        "transport_protocol": "TCP",
+        "description": "Base de datos NoSQL",
+        "severity": "media",
+        "impact": "Exposición permite acceso remoto a la base de datos, riesgo de fuga o modificación de información.",
+        "tech_recommendation": "Habilitar autenticación y cifrado, restringir acceso a IPs confiables, mantener actualizado MongoDB."
+    },
+    {
+        "port": "27374",
+        "service_name": "Sub7",
+        "transport_protocol": "TCP, UDP",
+        "description": "Troyano",
+        "severity": "media",
+        "impact": "Exposición permite control remoto malicioso del sistema, riesgo de robo de información y ejecución de código no autorizado.",
+        "tech_recommendation": "Cerrar el puerto, escanear y eliminar cualquier malware, mantener antivirus actualizado."
+    },
+    {
+        "port": "28960",
+        "service_name": "Call of Duty",
+        "transport_protocol": "TCP, UDP",
+        "description": "Gaming",
+        "severity": "media",
+        "impact": "Exposición permite tráfico de juego externo sin control, riesgo de DoS o interferencia de red.",
+        "tech_recommendation": "Restringir acceso mediante firewall solo a jugadores autorizados y monitorear tráfico de red."
+    },
+    {
+        "port": "31337",
+        "service_name": "Back Orifice",
+        "transport_protocol": "TCP, UDP",
+        "description": "Herramienta de administración remota usada para troyanos",
+        "severity": "alta",
+        "impact": "Exposición permite control remoto completo del sistema por atacantes, riesgo crítico de robo de datos y ejecución de código malicioso.",
+        "tech_recommendation": "Cerrar puerto inmediatamente, escanear el sistema por malware y reforzar seguridad con firewall y antivirus actualizado."
+    },
+    {
+        "port": "33434",
+        "service_name": "traceroute",
+        "transport_protocol": "UDP",
+        "description": "Utilidad para mostrar rutas y medir retrasos de tránsito de paquetes a través de una red",
+        "severity": "media",
+        "impact": "Exposición puede permitir análisis de topología de red por atacantes, riesgo de mapeo de red interna.",
+        "tech_recommendation": "Restringir acceso a IPs de confianza y monitorear tráfico ICMP/UDP."
+    }
+]

@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="format.css">
+        <title>Reporte Técnico</title>
+    </head>
+    <body>
+        <!-- Header del documento -->
+        <header>
+            <h1>Reporte técnico</h1>
+            <div>
+                <span class="text-bold">Pentester:</span>
+                <span>Federico Leandro Cañellas</span>
+            </div>
+            <div>
+                <span class="text-bold">Fecha:</span>
+                <span>{DATE}</span>
+            </div>
+            <div>
+                <span class="text-bold">Hora:</span>
+                <span>{TIME}</span>
+            </div>
+        </header>
+
+        <!-- Sumario ejecutivo -->
+        <div>
+            <h1>Sumario ejecutivo</h1>
+            <p class="text-justified">
+                Este trabajo consiste en el diseño, implementación y validación de un conjunto de scripts en Python orientados a la automatización del reconocimiento, escaneo y explotación ética de aplicaciones web en entornos controlados. El objetivo principal es la confección de un informe técnico generado de forma automatizada, que documenta rutas ocultas, puntos de entrada, cabeceras HTTP, servicios expuestos y vulnerabilidades comunes como SQL Injection y Cross-Site Scripting.
+                <br>
+                La metodología aplicada integra fases de reconocimiento automatizado, escaneo de puertos y servicios, explotación controlada, validación de resultados y generación automatizada del informe profesional.
+                <br>
+                El resultado del proyecto incluye scripts funcionales, un flujo automatizado de recopilación y análisis de datos, y un informe final con evidencias, tablas de hallazgos, recomendaciones y niveles de criticidad, siguiendo estándares de redacción profesional y principios de ética en ciberseguridad.
+                <br>
+                Este trabajo refuerza competencias en automatización ofensiva, análisis técnico de vulnerabilidades y documentación profesional, enfatizando la importancia de aplicar criterios de legalidad, responsabilidad y buenas prácticas en todo el proceso.
+            </p>
+        </div>
+
+        <!-- Hallazgos -->
+        <div>
+            <h1>Hallazgos</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Hallazgo / Vulnerabilidad</th>
+                        <th>Descripción</th>
+                        <th class="text-center">Nivel de criticidad</th>
+                        <th>Impacto</th>
+                        <th>Recomendación</th>
+                    </tr>
+                </thead>
+                <tbody>{FINDINGS-ROWS}</tbody>
+            </table>
+        </div>
+
+        <!-- Evidencias -->
+        <div>
+            <h1>Evidencias</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hallazgo / Vulnerabilidad</th>
+                        <th>Descripción</th>
+                        <th>Evidencia</th>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>{EVIDENCE-ROWS}</tbody>
+            </table>
+        </div>
+
+        <!-- Recomendaciones técnicas -->
+        <div>
+            <h1>Recomendaciones técnicas</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hallazgo / Vulnerabilidad</th>
+                        <th>Recomendación</th>
+                        <th>Responsable</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>{TECH-RECOMMENDATIONS-ROWS}</tbody>
+            </table>
+        </div>
+
+        <!-- Nivel de criticidad -->
+        <div>
+            <h1>Nivel de Criticidad</h1>
+            <table>
+                <thead>
+                    <th>Nivel</th>
+                    <th>Descripción</th>
+                    <th style="width:90px;">Número de Hallazgos</th>
+                    <th>Ejemplos comunes</th>
+                </thead>
+                <tbody>
+                    {SEVERITY-LEVEL-ROWS}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Reflexión ética y justificación técnica -->
+        <div>
+            <h1>Reflexión Ética y Profesional</h1>
+            <div>
+                <div>
+                    <h2>¿Cómo garantizaste que tus pruebas fueron éticas y controladas?​</h2>
+                    <p class="text-justified">
+                        Trabajé siempre en entornos controlados o de laboratorio, evitando afectar datos reales o la disponibilidad de servicios en producción.
+                        <br>
+                        Documenté cada paso para poder justificar las acciones y resultados, y me aseguré de detener cualquier prueba que pudiera generar un impacto no previsto.
+                    </p>
+                </div>
+                <div>
+                    <h2>¿Qué aprendiste sobre el poder y los límites de la automatización ofensiva?​</h2>
+                    <p class="text-justified">
+                        Aprendí que la automatización ofensiva es muy poderosa para acelerar y escalar pruebas, porque me permite lanzar miles de requests, payloads o análisis en muy poco tiempo y con consistencia, cubriendo superficies de ataque enormes sin saltarme pasos. También facilita integrar pruebas en pipelines y encontrar patrones que manualmente me costaría mucho detectar.
+                        <br>
+                        Pero también entendí que tiene límites claros: puede generar falsos positivos o falsos negativos, no interpreta la lógica de negocio, no se adapta bien a defensas o validaciones poco comunes, y no reemplaza la creatividad ni el criterio humano para encadenar vulnerabilidades y evaluar su impacto real.
+                        <br>
+                        En el fondo, la veo como una herramienta que potencia mi trabajo, pero no lo sustituye; necesito estar encima para guiarla, interpretarla y decidir el siguiente paso.</p>
+                </div>
+                <div>
+                    <h2>¿Qué decisiones tomaste que reflejan responsabilidad profesional en
+ciberseguridad?</h2>
+                    <p class="text-justified">
+                        Simulé servicios vulnerables para evitar afectar la disponibilidad de sitios que son efectivamente vulnerables para propósitos de estudio. De ésta manera, tambien evité realizar pruebas sin autorización previa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+<html>
