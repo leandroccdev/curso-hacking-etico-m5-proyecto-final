@@ -1,0 +1,5 @@
+# POST targets
+POST http://localhost:4000/login.php user password
+
+# GET targets
+GET http://localhost:4000/message.php id
